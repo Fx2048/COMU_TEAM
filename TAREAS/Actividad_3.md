@@ -1,5 +1,6 @@
 # Identificación de direcciones MAC y direccionesIP
 ¿Qué dispositivo tiene el MAC de destino que se muestra?
+
 //. El dispositivo con la dirección MAC de destino 00D0:BA8E:741A es el router
 
 ## Preguntas de reflexión
