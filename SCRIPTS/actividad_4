@@ -1,0 +1,183 @@
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+!
+!
+!
+end
+
+
+S1#
+S1#
+S1#
+S1#
+S1#
+S1#
+S1#
+S1#
+S1#
+S1#
+S1#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#line console 0
+S1(config-line)#password letmein
+S1(config-line)#login
+S1(config-line)#exit
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#
+S1#exit
+
+
+
+
+
+
+
+
+
+S1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+User Access Verification
+
+Password: 
+
+S1>enable
+Password: 
+S1#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#enable password c1$c0
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#
+S1#exit
+
+
+
+
+
+
+
+
+
+S1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+User Access Verification
+
+Password: 
+
+S1>letmein
+Translating "letmein"...domain server (255.255.255.255)
+% Unknown command or computer name, or unable to find computer address
+
+S1>enable
+Password: 
+S1# config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#service password-encryption
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#config t
+Enter configuration commands, one per line.  End with CNTL/Z.
+S1(config)#banner motd "This is a secure system. Authorized Access Only!"
+S1(config)#exit
+S1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+S1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+S1#
+S1#
+S1#exit
+
+
+
+
+
+
+
+
+
+S1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
