@@ -1,4 +1,7 @@
 # Actividad 4: Configuración inicial de un Switch
+
+
+
 Preguntas
 Responde las siguientes preguntas:
 a) ¿Cuántas interfaces Fast Ethernet tiene el switch?
