@@ -12,17 +12,26 @@ Responde las siguientes preguntas:
 - e) ¿Por qué el switch responde con "startup-config no está presente"?
 
 Proporciona acceso seguro a la línea de consola.
-Para proporcionar un acceso seguro a la línea de la consola, acceda al modo config-line y establezca
-la contraseña de consola en cesar.
+
+Para proporcionar un acceso seguro a la línea de la consola, acceda al modo config-line y establezca la contraseña de consola en cesar.
 S1# configure terminal
+
 Enter configuration commands, one per line. End with CNTL/Z.
+
 S1(config)# line console 0
+
 S1(config-line)# password cesar
+
 S1(config-line)# login
+
 S1(config-line)# exit
+
 S1(config)# exit
+
 %SYS-5-CONFIG_I: Configured from console by console
+
 S1#
+
 ## Pregunta:
 
 - ¿Por qué se requiere el comando login?
