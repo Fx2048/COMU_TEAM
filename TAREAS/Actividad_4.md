@@ -103,7 +103,7 @@ S1#
 ## Preguntas:
 - ¿Cuándo se muestra este aviso?
 
-  Rpta//.
+  Rpta//. Nos muestra después de que un usuario inicia sesión en el switch. Es la primera información que ven al acceder a la interfaz de línea de comandos (CLI).
 - ¿Por qué todos los switches deben tener un aviso de MOTD?
 
    Rpta//. Todos los switch deben tener un banner MOTD para evitar que personas no autorizadas entren, es más que todo para resguardar la seguridad.
