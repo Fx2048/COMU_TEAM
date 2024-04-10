@@ -106,7 +106,7 @@ S1#
   Rpta//.
 - ¿Por qué todos los switches deben tener un aviso de MOTD?
 
-   Rpta//.
+   Rpta//. Todos los switch deben tener un banner MOTD para evitar que personas no autorizadas entren, es más que todo para resguardar la seguridad.
 ## 4 . Guarda y verifica archivos de configuración en NVRAM
 
 Verifica que la configuración sea precisa mediante el comando show run.
