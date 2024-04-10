@@ -1,20 +1,24 @@
 # Actividad 4: Configuración inicial de un Switch
-ENLACE A LA ACTIVIDAD 4 EN SOFTWARE
-https://github.com/Fx2048/COMU_TEAM/tree/main/CISCO_PACKET_TRACER
+##### ENLACE A LA ACTIVIDAD 4 EN SOFTWARE https://github.com/Fx2048/COMU_TEAM/tree/main/CISCO_PACKET_TRACER
 
 Preguntas
 Responde las siguientes preguntas:
 - a) ¿Cuántas interfaces Fast Ethernet tiene el switch?
-  Rptt//.
+
+  Rpta//.
 - b) ¿Cuántas interfaces Gigabit Ethernet tiene el switch?
-  Rptt//.
+
+  Rpta//.
 - c) ¿Cuál es el rango de valores que se muestra para las líneas vty?
-  Rptt//.
+
+  Rpta//.
 - d) ¿Qué comando muestra el contenido actual de la memoria de acceso aleatorio no volátil
 (NVRAM)? show star
-  Rptt//.
+
+  Rpta//.
 - e) ¿Por qué el switch responde con "startup-config no está presente"?
-  Rptt//.
+
+  Rpta//.
 
 Proporciona acceso seguro a la línea de consola.
 
@@ -40,6 +44,7 @@ S1#
 ## Pregunta:
 
 - ¿Por qué se requiere el comando login?
+
   Rpta//. El comando login se utiliza para requerir autenticación al acceder a la línea de consola. Esto significa que cuando alguien intenta acceder a través de la línea de consola, se le pedirá que ingrese una contraseña (en este caso, "cesar") para verificar su identidad. En otras palabras, sirve para poner una contraseña en la consola y sea posible, sin ello no va a funcionar
 
 
@@ -53,8 +58,10 @@ S1# show run
 
 ## Preguntas:
 - ¿Qué se muestra como contraseña de enable secret?
+
   Rpta//. La contraseña de enable secret se muestra como una cadena encriptada, lo que la hace no legible en el archivo de configuración.Mostrándonos una contraseña encriptada
 - ¿Por qué la contraseña de enable secret se ve diferente de lo que se configuró?
+
   Rpta//. La contraseña de enable secret se ve diferente porque, por defecto, el IOS de Cisco encripta las contraseñas de forma automática para mejorar la seguridad. Además a diferencia de una contraseña plana, ahora nos muestra una contraseña encriptada.
  
 Encripta las contraseñas de consola y de enable.
@@ -72,7 +79,8 @@ S1(config)# exit
 ## Pregunta:
 - Si configuras más contraseñas en el switch, ¿se mostrarán como texto no cifrado o en forma cifrada
 en el archivo de configuración? Explica.
-Rpta//. Cuando se utiliza el comando service password-encryption, todas las contraseñas configuradas después de este comando, incluidas las de consola y enable, se mostrarán en forma cifrada en el archivo de configuración.
+
+  Rpta//. Cuando se utiliza el comando service password-encryption, todas las contraseñas configuradas después de este comando, incluidas las de consola y enable, se mostrarán en forma cifrada en el archivo de configuración.
 
 
 Configura un aviso de mensaje del día (MOTD).
@@ -94,8 +102,10 @@ S1#
 
 ## Preguntas:
 - ¿Cuándo se muestra este aviso?
+
   Rpta//.
 - ¿Por qué todos los switches deben tener un aviso de MOTD?
+
    Rpta//.
 ## 4 . Guarda y verifica archivos de configuración en NVRAM
 
@@ -116,10 +126,14 @@ Cierre la ventana de configuración para S1
 
 ## Preguntas:
 - ¿Cuál es la versión abreviada más corta del comando copy running-config startup-config?
+
   Rptt//. La versión abreviada más corta del comando es copy run start. La forma abreviada es debe ser única, y copy se abrevia con “cop r s” o “cop r st”.
 - Examine el archivo de configuración de inicio.¿Qué comando muestra el contenido de la NVRAM?
+
   Rptt//. El comando que muestra el contenido de la NVRAM es show startup-config.
+
 Escriba sus respuestas aquí.
 - ¿Todos los cambios realizados están grabados en el archivo?
+
   Rptt//. Sí, basicamente es lo mismo de running config, pero no se va a borrar. Todos los cambios realizados están grabados en el archivo de configuración de inicio (startup-config) en la NVRAM. Esto asegura que los cambios persistan incluso si el sistema se reinicia o se apaga.
  
