@@ -6,34 +6,38 @@
 
 Preguntas
 Responde las siguientes preguntas:
-- a) ¿Cuántas interfaces Fast Ethernet tiene el switch?
+- a) **¿Cuántas interfaces Fast Ethernet tiene el switch?**
   
 - ![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/281411b0-8a02-44af-a7a4-53a8247cdb3f)
 
 
-  Rpta//.En total tenemos 24 Inteface Fast Ethernet( son puertos en un switch que admiten velocidades de hasta 100 Mbps),los 24 puertos nos permite admitir conexiones de hasta 100 Mbps(megabit por segundo) cada uno. Estos puertos son esenciales para las capacidades de transferencia de datos en una red local. 
-- b) ¿Cuántas interfaces Gigabit Ethernet tiene el switch?
+  **Rpta//**.En total tenemos 24 Inteface Fast Ethernet( son puertos en un switch que admiten velocidades de hasta 100 Mbps),los 24 puertos nos permite admitir conexiones de hasta 100 Mbps(megabit por segundo) cada uno. Estos puertos son esenciales para las capacidades de transferencia de datos en una red local.
+   
+- **b) ¿Cuántas interfaces Gigabit Ethernet tiene el switch?**
 
 ![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/ade5ff52-f174-45be-82b1-3369d9e18efe)
 
 
-  Rpta//. Presenta dos gigabits ethernet(son puertos en un switch que admiten velocidades de hasta 1 Gbps o más).
-- c) ¿Cuál es el rango de valores que se muestra para las líneas vty?
+  **Rpta//.** Presenta dos gigabits ethernet(son puertos en un switch que admiten velocidades de hasta 1 Gbps o más).
+  
+- **c) ¿Cuál es el rango de valores que se muestra para las líneas vty?**
 
 ![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/470d2ba8-7255-4ca6-a867-33b5a4b3eeae)
 
 
-  Rpta//.El rango de lineas vty son de 0, 4 a 5 al 15.(son las líneas de terminal virtual del enrutador, utilizadas exclusivamente para controlar las conexiones Telnet entrantes. )Estas líneas permiten administrar el dispositivo de forma remota.
-- d) ¿Qué comando muestra el contenido actual de la memoria de acceso aleatorio no volátil
-(NVRAM)? 
+  **Rpta//**.El rango de lineas vty son de 0, 4 a 5 al 15.(son las líneas de terminal virtual del enrutador, utilizadas exclusivamente para controlar las conexiones Telnet entrantes. )Estas líneas permiten administrar el dispositivo de forma remota.
+  
+- **d) ¿Qué comando muestra el contenido actual de la memoria de acceso aleatorio no volátil
+(NVRAM)?**
 
 ![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/f5ae0cdc-5b78-4972-9cad-5a1b11f8c38e)
 
 
-  Rpta//.El comando seria: show startup-config. Proporciona la configuración almacenada en la NVRAM, que incluye la configuración inicial del dispositivo.
-- e) ¿Por qué el switch responde con "startup-config no está presente"?
+  **Rpta//**.El comando seria: show startup-config. Proporciona la configuración almacenada en la NVRAM, que incluye la configuración inicial del dispositivo.
+  
+- **e) ¿Por qué el switch responde con "startup-config no está presente"?**
 
-  Rpta//. Aparece así porque no hemos guardado nada en la memoria, todo sigue estando en la memoria ram, y esto es prueba cuando queremos guardar algo, está todavía en la Memoria RAM.
+  **Rpta//.** Aparece así porque no hemos guardado nada en la memoria, todo sigue estando en la memoria ram, y esto es prueba cuando queremos guardar algo, está todavía en la Memoria RAM.
 
 Proporciona acceso seguro a la línea de consola.
 
@@ -58,9 +62,9 @@ S1#
 
 ## Pregunta:
 
-- ¿Por qué se requiere el comando login?
+- **¿Por qué se requiere el comando login?**
 
-  Rpta//. El comando login se utiliza para requerir autenticación al acceder a la línea de consola. Esto significa que cuando alguien intenta acceder a través de la línea de consola, se le pedirá que ingrese una contraseña (en este caso, "cesar") para verificar su identidad. En otras palabras, sirve para poner una contraseña en la consola y sea posible, sin ello no va a funcionar
+  **Rpta//**. El comando login se utiliza para requerir autenticación al acceder a la línea de consola. Esto significa que cuando alguien intenta acceder a través de la línea de consola, se le pedirá que ingrese una contraseña (en este caso, "cesar") para verificar su identidad. En otras palabras, sirve para poner una contraseña en la consola y sea posible, sin ello no va a funcionar
 
 
 Verifica si la contraseña de enable secret se agregó al archivo de configuración.
@@ -72,15 +76,16 @@ Nota: Puedes abreviar show running-config como
 S1# show run
 
 ## Preguntas:
-- ¿Qué se muestra como contraseña de enable secret?
+- **¿Qué se muestra como contraseña de enable secret?**
 
 ![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/785ddbc0-e7c5-46f8-8ad5-656edba2f00e)
 
 
-  Rpta//. La contraseña de enable secret se muestra como una cadena encriptada, lo que la hace no legible en el archivo de configuración.Mostrándonos una contraseña encriptada
-- ¿Por qué la contraseña de enable secret se ve diferente de lo que se configuró?
+  **Rpta//**. La contraseña de enable secret se muestra como una cadena encriptada, lo que la hace no legible en el archivo de configuración.Mostrándonos una contraseña encriptada
+  
+- **¿Por qué la contraseña de enable secret se ve diferente de lo que se configuró?**
 
-  Rpta//. La contraseña de enable secret se ve diferente porque, por defecto, el IOS de Cisco encripta las contraseñas de forma automática para mejorar la seguridad. Además a diferencia de una contraseña plana, ahora nos muestra una contraseña encriptada.
+  **Rpta//.** La contraseña de enable secret se ve diferente porque, por defecto, el IOS de Cisco encripta las contraseñas de forma automática para mejorar la seguridad. Además a diferencia de una contraseña plana, ahora nos muestra una contraseña encriptada.
  
 Encripta las contraseñas de consola y de enable.
 
@@ -95,10 +100,10 @@ S1(config)# service password-encryption
 S1(config)# exit
 
 ## Pregunta:
-- Si configuras más contraseñas en el switch, ¿se mostrarán como texto no cifrado o en forma cifrada
-en el archivo de configuración? Explica.
+- **Si configuras más contraseñas en el switch, ¿se mostrarán como texto no cifrado o en forma cifrada
+en el archivo de configuración? Explica.**
 
-  Rpta//. Cuando se utiliza el comando service password-encryption, todas las contraseñas configuradas después de este comando, incluidas las de consola y enable, se mostrarán en forma cifrada en el archivo de configuración.
+  **Rpta//.** Cuando se utiliza el comando service password-encryption, todas las contraseñas configuradas después de este comando, incluidas las de consola y enable, se mostrarán en forma cifrada en el archivo de configuración.
 
 
 Configura un aviso de mensaje del día (MOTD).
@@ -119,12 +124,12 @@ S1(config)# exit
 S1#
 
 ## Preguntas:
-- ¿Cuándo se muestra este aviso?
+-**Cuándo se muestra este aviso?**
 
-  Rpta//. Nos muestra después de que un usuario inicia sesión en el switch. Es la primera información que ven al acceder a la interfaz de línea de comandos (CLI).
-- ¿Por qué todos los switches deben tener un aviso de MOTD?
+  **Rpta//**. Nos muestra después de que un usuario inicia sesión en el switch. Es la primera información que ven al acceder a la interfaz de línea de comandos (CLI).
+- **¿Por qué todos los switches deben tener un aviso de MOTD?**
 
-   Rpta//. Todos los switch deben tener un banner MOTD para evitar que personas no autorizadas entren, es más que todo para resguardar la seguridad.
+   **Rpta//**. Todos los switch deben tener un banner MOTD para evitar que personas no autorizadas entren, es más que todo para resguardar la seguridad.
 ## 4 . Guarda y verifica archivos de configuración en NVRAM
 
 Verifica que la configuración sea precisa mediante el comando show run.
