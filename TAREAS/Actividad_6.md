@@ -1,6 +1,6 @@
 ♾️ Actividad 4: Crear una red con un switch y un router - Modo Físico
 
-## 📂ENLACE A LA ACTIVIDAD 4 EN SOFTWARE 
+## 📂ENLACE A LA ACTIVIDAD 6 EN SOFTWARE 
 
 https://github.com/Fx2048/COMU_TEAM/tree/main/CISCO_PACKET_TRACER
 
