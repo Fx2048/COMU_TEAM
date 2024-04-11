@@ -1,19 +1,34 @@
 # Actividad 4: Configuración inicial de un Switch
 ##### ENLACE A LA ACTIVIDAD 4 EN SOFTWARE https://github.com/Fx2048/COMU_TEAM/tree/main/CISCO_PACKET_TRACER
 
+![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/ffb6f924-4197-4f30-87bc-319013a86b68)
+
+
 Preguntas
 Responde las siguientes preguntas:
 - a) ¿Cuántas interfaces Fast Ethernet tiene el switch?
+  
+- ![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/281411b0-8a02-44af-a7a4-53a8247cdb3f)
+
 
   Rpta//.En total tenemos 24 Inteface Fast Ethernet( son puertos en un switch que admiten velocidades de hasta 100 Mbps),los 24 puertos nos permite admitir conexiones de hasta 100 Mbps(megabit por segundo) cada uno. Estos puertos son esenciales para las capacidades de transferencia de datos en una red local. 
 - b) ¿Cuántas interfaces Gigabit Ethernet tiene el switch?
 
+![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/ade5ff52-f174-45be-82b1-3369d9e18efe)
+
+
   Rpta//. Presenta dos gigabits ethernet(son puertos en un switch que admiten velocidades de hasta 1 Gbps o más).
 - c) ¿Cuál es el rango de valores que se muestra para las líneas vty?
 
+![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/470d2ba8-7255-4ca6-a867-33b5a4b3eeae)
+
+
   Rpta//.El rango de lineas vty son de 0, 4 a 5 al 15.(son las líneas de terminal virtual del enrutador, utilizadas exclusivamente para controlar las conexiones Telnet entrantes. )Estas líneas permiten administrar el dispositivo de forma remota.
 - d) ¿Qué comando muestra el contenido actual de la memoria de acceso aleatorio no volátil
-(NVRAM)? show star
+(NVRAM)? 
+
+![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/f5ae0cdc-5b78-4972-9cad-5a1b11f8c38e)
+
 
   Rpta//.El comando seria: show startup-config. Proporciona la configuración almacenada en la NVRAM, que incluye la configuración inicial del dispositivo.
 - e) ¿Por qué el switch responde con "startup-config no está presente"?
@@ -58,6 +73,9 @@ S1# show run
 
 ## Preguntas:
 - ¿Qué se muestra como contraseña de enable secret?
+
+![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/785ddbc0-e7c5-46f8-8ad5-656edba2f00e)
+
 
   Rpta//. La contraseña de enable secret se muestra como una cadena encriptada, lo que la hace no legible en el archivo de configuración.Mostrándonos una contraseña encriptada
 - ¿Por qué la contraseña de enable secret se ve diferente de lo que se configuró?
