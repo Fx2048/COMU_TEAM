@@ -124,7 +124,7 @@ S1(config)# exit
 S1#
 
 ## Preguntas:
--**Cuándo se muestra este aviso?**
+- **Cuándo se muestra este aviso?**
 
   **Rpta//**. Nos muestra después de que un usuario inicia sesión en el switch. Es la primera información que ven al acceder a la interfaz de línea de comandos (CLI).
 - **¿Por qué todos los switches deben tener un aviso de MOTD?**
@@ -148,15 +148,15 @@ Building configuration...
 Cierre la ventana de configuración para S1
 
 ## Preguntas:
-- ¿Cuál es la versión abreviada más corta del comando copy running-config startup-config?
+- **¿Cuál es la versión abreviada más corta del comando copy running-config startup-config?**
 
-  Rptt//. La versión abreviada más corta del comando es copy run start. La forma abreviada es debe ser única, y copy se abrevia con “cop r s” o “cop r st”.
-- Examine el archivo de configuración de inicio.¿Qué comando muestra el contenido de la NVRAM?
+  **Rpta//.** La versión abreviada más corta del comando es copy run start. La forma abreviada es debe ser única, y copy se abrevia con “cop r s” o “cop r st”.
+- **Examine el archivo de configuración de inicio.¿Qué comando muestra el contenido de la NVRAM?**
 
-  Rptt//. El comando que muestra el contenido de la NVRAM es show startup-config.
+  **Rptt//.** El comando que muestra el contenido de la NVRAM es show startup-config.
 
 Escriba sus respuestas aquí.
-- ¿Todos los cambios realizados están grabados en el archivo?
+- **¿Todos los cambios realizados están grabados en el archivo?**
 
-  Rptt//. Sí, basicamente es lo mismo de running config, pero no se va a borrar. Todos los cambios realizados están grabados en el archivo de configuración de inicio (startup-config) en la NVRAM. Esto asegura que los cambios persistan incluso si el sistema se reinicia o se apaga.
+  **Rpta//.** Sí, basicamente es lo mismo de running config, pero no se va a borrar. Todos los cambios realizados están grabados en el archivo de configuración de inicio (startup-config) en la NVRAM. Esto asegura que los cambios persistan incluso si el sistema se reinicia o se apaga.
  
