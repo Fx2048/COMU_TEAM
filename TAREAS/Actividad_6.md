@@ -14,7 +14,7 @@ están conectados.
 ### 🔼 En unaventana con el símbolo del sistema en la PC-A, haga ping a la PC-B.
  Nota: Si los pings no son correctos, es posible que debas desactivar el Firewall.
  
- Pregunta
+ ## 📂Pregunta
 ¿Fueron correctos los pings? Explica. 
 
 #### ✅No fueron correctos los pings, porque el router lleva el tráfico en sus dos 
@@ -49,7 +49,7 @@ directamente?
 
 #### ✅ De la siguiente manera: 192.160.1.1/2
 
-## Preguntas 
+## 📂Preguntas 
 
 ### 🔼1. Si la interfaz G0/0/1 se mostrará administratively down, ¿qué comando de configuración de 
 interfaz usaría para activar la interfaz? 
