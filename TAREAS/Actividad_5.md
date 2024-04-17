@@ -88,7 +88,7 @@ Sí
 
 Cada pueto debe manejar una direccion ip diferente, y cada sispositivo dentro de la red, debe no solaparse.
 
--**19. ¿Por qué es necesario asignar diferentes redes IP a los diferentes puertos de un router?** 
+- **19. ¿Por qué es necesario asignar diferentes redes IP a los diferentes puertos de un router?** 
 
 #### Para interconectar dos redes.
 
