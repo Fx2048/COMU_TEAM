@@ -1,4 +1,4 @@
-## ACTIVIDAD 5: IDENTIDICACIÓN DE DIRECCIONES MAC Y DIRECCIONES IP
+# ACTIVIDAD 5: IDENTIDICACIÓN DE DIRECCIONES MAC Y DIRECCIONES IP
 
 ### OBJETIVOS:
 - Parte 1: Recopilar información de PDU para la comunicación de red local
@@ -80,7 +80,7 @@ Era la del router.
 
 - **15. ¿A qué dispositivos pertenecían las otras direcciones MAC?**
 
-Petenecnía a direcciones emisores, receptores, que podía n ser acces point, switchers,
+Petenecnía a direcciones emisores, receptores, que podía ser Access point, switchers.
 
 - **16. ¿Las direcciones IPv4 de envío y recepción cambiaron los campos en alguna de las PDU?**
 
@@ -100,4 +100,4 @@ Cada pueto debe manejar una direccion IP diferente, y cada Dispositivo dentro de
 
 - **20. Si esta simulación se configura con IPv6 en lugar de IPv4, ¿cuál sería la diferencia?**
 
-Todo sería igual, solo el formato donde se manejan las direcciones IP, ya que la IPv6 manejan una versión sexageNO simal.
+Todo sería igual, solo el formato donde se manejan las direcciones IP, ya que la IPv6 manejan una versión sexagesimal.
