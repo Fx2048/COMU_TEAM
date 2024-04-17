@@ -10,7 +10,7 @@
 
 ### Genera tráfico web (HTTP)
 
-- **Observa la página del navegador web del cliente web. ¿Cambió algo?
+- **Observa la página del navegador web del cliente web. ¿Cambió algo?**
   
 ### Explora el contenido del paquete HTTP
 
@@ -26,7 +26,7 @@
 
 - **Haz clic en el último cuadro coloreado de la columna Información.Explica los resultados.**
 
-## MOSTRAR ELEMENTOS DE LA SUIE DE PROTOCOLOS TPC/IP
+## MOSTRAR ELEMENTOS DE LA SUITE DE PROTOCOLOS TPC/IP
 
 ### Ver eventos adicionales
 
