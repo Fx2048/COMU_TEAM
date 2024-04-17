@@ -102,6 +102,7 @@ Nos indica que el dispositivo ha sido estblecido en estado cerrado, es decir ha 
 - **Sobre la base de la información que se analizó durante la captura de Packet Tracer, ¿qué número de puerto escucha el servidor web para detectar la solicitud web?**
 
 El servidor web esta escuchando en el puerto 80.
+
 ![image](https://github.com/Fx2048/COMU_TEAM/assets/151795724/a37c002e-0945-48c7-bcce-f8bcf423636d)
 
 - **¿Qué puerto escucha el servidor web para detectar una solicitud de DNS?**
