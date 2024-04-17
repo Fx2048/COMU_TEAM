@@ -1,6 +1,6 @@
 ## ACTIVIDAD 5: IDENTIDICACIÓN DE DIRECCIONES MAC Y DIRECCIONES IP
 
-### OBJJETIVOS:
+### OBJETIVOS:
 - Parte 1: Recopilar información de PDU para la comunicación de red local
 - Parte 2: Recopilar información de PDU para la comunicación de red remota 
 
