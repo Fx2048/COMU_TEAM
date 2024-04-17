@@ -1,6 +1,6 @@
 # Actividad 4: Configuración inicial de un Switch
 ##### ENLACE A LA ACTIVIDAD 4 EN SOFTWARE https://github.com/Fx2048/COMU_TEAM/tree/main/CISCO_PACKET_TRACER
-##### ENLACE VIDEO DE LA ACTIVIDAD 4
+##### ENLACE VIDEO DE LA ACTIVIDAD 4 https://drive.google.com/file/d/15gQsYN1BrSFtE--fSuquo0BkOt3e3Gxw/view?usp=drivesdk
 ![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/ffb6f924-4197-4f30-87bc-319013a86b68)
 
 
