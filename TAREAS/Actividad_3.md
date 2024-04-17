@@ -8,6 +8,9 @@ Responda las siguientes preguntas con respecto a los datos capturados:
 
 1. ¿Se utilizaron diferentes tipos de cables / medios para conectar dispositivos?
 
+Sí, se utilizó 3 medios,1. Medio inalámbrico, otro tipo cable de cobre (2) y otro de fibra (3)
+
+
 2. ¿Los cables cambiaron el manejo de la PDU de alguna manera?
 
 3. ¿El Hub perdió parte de la información que recibió?
@@ -41,6 +44,8 @@ Responda las siguientes preguntas con respecto a los datos capturados:
 17. Cuando sigue la respuesta a un ping, a veces llamado estanque, ¿ve el cambio de envío y recepción de direcciones IPv4?
 
 18. ¿Cuál es el patrón para el direccionamiento IPv4 utilizado en esta simulación?
+
+
 
 19. ¿Por qué se deben asignar diferentes redes IP a diferentes puertos en el router?
 

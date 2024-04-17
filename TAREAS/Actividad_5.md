@@ -36,9 +36,11 @@ El access point solo trabajan a nivel capa 1.
 
 Sí ya que al reenviar a todos los puertos, solo una es el destino, los demás rechaza ,porque no son el destino.
 
+
 9. Al examinar la ficha PDU Details (Detalles de PDU), ¿qué dirección MAC aparecía primero, la de origen o la de destino?
 
 Aparece la de destino
+
 
 10. ¿Por qué las direcciones MAC aparecen en este orden? 
 
@@ -57,6 +59,7 @@ No, ya que el swtich soloreenvia al destino que se requiera y no a todas las pcs
 14. Sí, cambió en el router¿Qué dispositivo usa direcciones MAC que comienzan con 00D0: BA? 
 
 Era la del router
+
 
 15. ¿A qué dispositivos pertenecían las otras direcciones MAC? .
 
