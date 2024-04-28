@@ -231,7 +231,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-#### Resulatados:
+#### Resultados:
 ```
 Sent 1 packets.
 
