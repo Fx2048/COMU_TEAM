@@ -220,6 +220,7 @@ Eres el administrador de seguridad de una red corporativa y has notado unaumento
 #### Parte 3: Automatización y monitorización
 ##### Código de python:
 
+
 ## PROBLEMA 4: Análisis y diseño de red Peer-to-Peer (P2P)
 
 Escenario: Una startup tecnológica desea implementar una red P2P robusta para permitir elintercambio eficiente de recursos computacionales entre usuarios distribuidosgeográficamente. Esta red debe ser capaz de manejar intercambios dinámicos de archivos,distribución de carga, y debe incorporar medidas de seguridad para prevenir accesos noautorizados
@@ -322,8 +323,29 @@ node.connect_to_peer('127.0.0.1', 6000)
 
 ````
 # Resultados 
+`````
+C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\venv\Scripts\python.exe C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\main.py 
+Node started on 127.0.0.1:5000
+`````
 # Análisis de código
+
+a) Análisis de código:
+
+La clase Peer representa un nodo en una red ``peer-to-peer (P2P)``.
+
+En el método ``__init__``, se inicializan los atributos del nodo, se crea un socket del servidor y se inicia un hilo para aceptar conexiones entrantes.
+
+El método ``accept_connections `` espera y acepta conexiones entrantes de otros nodos. Para cada conexión aceptada, se inicia un nuevo hilo para manejar las comunicaciones con ese cliente.
+El método ``handle_client``maneja la comunicación con un cliente específico. Lee los datos recibidos del cliente y los reenvía a todos los otros clientes conectados, excluyendo al remitente.
+El método ``broadcast_data`` envía datos a todos los clientes conectados, excepto al remitente.
+El método ``connect_to_peer ``permite que este nodo se conecte a otro nodo en la red P2P.
 # Análisis de resultado
+
+
+El resultado de este código es la implementación de un nodo en una red ``P2P simple.``
+Cuando se crea una instancia de Peer, se inicia un nodo en el ``host`` y puerto especificados.
+Luego, se puede llamar al método ``connect_to_peer`` para que este nodo se conecte a otro nodo en la red ``P2P``.
+Después de conectarse a otros nodos, este nodo puede recibir y enviar mensajes a los otros nodos en la ``red P2P``.
 
 ###   Parte 2: Gestión de recursos y distribución de carga
 
@@ -380,6 +402,36 @@ for task in tasks:  lb.assign_load_based_on_resources(task)
 for task in tasks:
     lb.round_robin(task)
 ````
+# Análisis de código :
+
+1. ``LoadBalancer:``
+La clase LoadBalancer representa un balanceador de carga.
+Tiene un atributo nodes que almacena los nodos disponibles para manejar tareas.
+
+2. ``add_node(self, node):``
+Método para agregar un nodo al balanceador de carga.
+
+3. ``assign_load_based_on_resources(self, task):``
+Método que asigna una tarea a un nodo basado en los recursos disponibles.
+Ordena los nodos por recursos disponibles y asigna la tarea al nodo con más recursos disponibles.
+
+4. ``round_robin(self, task):``
+Método que implementa el algoritmo de round-robin para distribuir tareas de manera equitativa.
+Distribuye las tareas de manera circular, asignando cada tarea al siguiente nodo disponible en la lista de nodos.
+
+5. ``Node:``
+La clase Node representa un nodo en el sistema.
+Tiene atributos como name para el nombre del nodo y available_resources para los recursos disponibles en el nodo.
+
+6. ``handle_task(self, task):``
+Método que maneja una tarea asignada al nodo.
+Simplemente imprime un mensaje indicando que la tarea ha sido manejada por el nodo.
+
+7. ``create_self_signed_cert(cert_file, key_file):``
+Función que crea un certificado autofirmado utilizando la biblioteca OpenSSL.
+Genera una clave privada y un certificado`` X.509`` con información específica ``(país, estado, ciudad, etc.)`` y firma el certificado utilizando la clave privada.
+Escribe el certificado y la clave privada en archivos especificados.
+
 # Resultados
 
 ````
@@ -393,7 +445,15 @@ Task 'Task2' handled by node 'Node1'
 Task 'Task3' handled by node 'Node1'
 Task 'Task4' handled by node 'Node1'
 Process finished with exit code 0
-````
+`````
+
+# Análisis de Resultado:
+
+Primero, se manejan las tareas 'Task1', 'Task2', 'Task3', y 'Task4' utilizando el método assign_load_based_on_resources, el cual asigna las tareas basadas en los recursos disponibles en los nodos. En este caso, todas las tareas son manejadas por el nodo 'Node3'.
+Luego, se manejan las mismas tareas utilizando el método round_robin, el cual implementa el algoritmo de round-robin para distribuir las tareas de manera equitativa entre los nodos. En este caso, las tareas 'Task1', 'Task2', 'Task3', y 'Task4' son distribuidas secuencialmente entre los nodos 'Node1' y 'Node2', y debido a que solo hay dos nodos disponibles ('Node1' y 'Node2'), las tareas se distribuyen entre ellos de manera alternativa.
+Finalmente, el programa termina con un código de salida 0, indicando que se ha ejecutado correctamente sin errores.
+
+
 # Parte 3: Seguridad en la Red P2P
 
 ```
@@ -470,4 +530,43 @@ C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\venv\Scripts\python.exe C:\U
 Node started on 127.0.0.1:5000
 ```
 
-# Análisis
+# Análisis de código
+
+1. ``Clase Peer:``
+Representa un nodo en la red P2P.
+Al inicializarse, establece un servidor TCP en el host y puerto especificados.
+Genera una clave segura a partir de la contraseña proporcionada por el usuario utilizando la función generate_key.
+Utiliza hilos para aceptar conexiones entrantes y manejar clientes en paralelo.
+
+2. ``Método generate_key:``
+
+Genera una clave segura usando la función de derivación de claves basada en contraseña (PBKDF2).
+PBKDF2 utiliza una sal aleatoria y un número alto de iteraciones para hacer más costoso el cálculo de la clave, lo que mejora la seguridad.
+
+3. ``Método verify_key:``
+
+Verifica si la contraseña proporcionada por el cliente coincide con la contraseña almacenada en el nodo.
+Recalcula la clave utilizando la misma sal y número de iteraciones que se usaron para generar la clave almacenada, y luego compara las claves.
+
+4. ``Método accept_connections:``
+
+Acepta conexiones entrantes de clientes.
+Si la autenticación es exitosa (es decir, la contraseña proporcionada por el cliente coincide con la contraseña almacenada en el nodo), agrega al cliente a la lista de peers y comienza a manejar sus mensajes.
+Si la autenticación falla, cierra la conexión con el cliente.
+
+5. ``Método handle_client:``
+
+Maneja la comunicación con un cliente específico.
+Recibe mensajes del cliente y, si es un mensaje de "ping", responde con "pong".
+Si es otro tipo de mensaje, lo reenvía a todos los otros clientes conectados.
+
+6. ``Método broadcast_data:``
+
+Envía datos a todos los clientes conectados, excepto al remitente.
+
+# Análisis de resultado
+El resultado indica que el nodo se ha iniciado correctamente en la dirección ``IP 127.0.0.1 ``y en el puerto ``5000``. Esto significa que el servidor está escuchando conexiones entrantes en esa dirección y puerto, y está listo para aceptar clientes.
+
+El mensaje ``"Node started on 127.0.0.1:5000"`` es una confirmación de que el servidor se ha iniciado con éxito y está listo para recibir conexiones. Esto es útil para verificar que el servidor se haya iniciado correctamente sin errores.
+
+En resumen, el mensaje indica que el servidor se ha iniciado y está listo para aceptar conexiones en la dirección IP y puerto especificados.
