@@ -73,30 +73,49 @@ No hay restricciones de firewall o configuraciones de red que puedan bloquear la
 ````
 ### Paso 2: Implementación de seguridad
 ```
- from OpenSSL import crypto
- def create_self_signed_cert(cert_file, key_file):
- k = crypto.PKey()
- k.generate_key(crypto.TYPE_RSA, 2048)
- cert = crypto.X509()
- cert.get_subject().C = "US"
- cert.get_subject().ST = "California"
- cert.get_subject().L = "San Francisco"
- cert.get_subject().O = "My Company"
- cert.get_subject().OU = "My Organizational Unit"
- cert.get_subject().CN = "mydomain.com"
- cert.set_serial_number(1000)
- cert.gmtime_adj_notBefore(0)
- cert.gmtime_adj_notAfter(10*365*24*60*60)
- cert.set_issuer(cert.get_subject())
- cert.set_pubkey(k)
- cert.sign(k, 'sha256')
- open(cert_file, "wt").write(crypto.dump_certificate(crypto.FILETYPE_PEM,
-cert).decode('utf-8'))
- open(key_file, "wt").write(crypto.dump_privatekey(crypto.FILETYPE_PEM,
-k).decode('utf-8'))
+from OpenSSL import crypto
+
+def create_self_signed_cert(cert_file, key_file):
+    k = crypto.PKey()
+    k.generate_key(crypto.TYPE_RSA, 2048)
+    cert = crypto.X509()
+    cert.get_subject().C = "US"
+    cert.get_subject().ST = "California"
+    cert.get_subject().L = "San Francisco"
+    cert.get_subject().O = "My Company"
+    cert.get_subject().OU = "My Organizational Unit"
+    cert.get_subject().CN = "mydomain.com"
+    cert.set_serial_number(1000)
+    cert.gmtime_adj_notBefore(0)
+    cert.gmtime_adj_notAfter(10*365*24*60*60)
+    cert.set_issuer(cert.get_subject())
+    cert.set_pubkey(k)
+    cert.sign(k, 'sha256')
+    with open(cert_file, "wt") as certfile:
+        certfile.write(crypto.dump_certificate(crypto.FILETYPE_PEM, cert).decode('utf-8'))
+    with open(key_file, "wt") as keyfile:
+        keyfile.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, k).decode('utf-8'))
+
 create_self_signed_cert('ldap_cert.pem', 'ldap_key.pem')
 
 ```
+# Resultados
+````
+Traceback (most recent call last):
+  File "C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\main.py", line 34, in <module>
+    main()
+  File "C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\main.py", line 23, in main
+    client, tunnel = create_ssh_tunnel(ssh_user, ssh_password, ssh_host, ldap_host, local_ldap_port, remote_ldap_port)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\main.py", line 7, in create_ssh_tunnel
+    client.connect(host, username=user, password=password)
+  File "C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\venv\Lib\site-packages\paramiko\client.py", line 386, in connect
+    sock.connect(addr)
+TimeoutError: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+
+Process finished with exit code 1
+````
+# Análisis
 
 ### Paso 3: Evaluación de seguridad
 
