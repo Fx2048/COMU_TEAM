@@ -181,18 +181,18 @@ Eres el administrador de seguridad de una red corporativa y has notado unaumento
 2. Ingresar a la configuración del switch y navegar a la sección de **Seguridad**.
 3. Buscar la opción de **ARP Spoofing Prevention**.
 4. Configurar los siguientes parámetros:
-            - **Dirección IP**: La dirección IP de tu **gateway**, **router** o **firewall**.
-            - **Dirección MAC**: La dirección MAC LAN de tu **gateway**, **router** o **firewall**.
-            - **Puertos**: Indica el puerto donde está conectado tu **gateway**, **router** o **firewall**.
+- **Dirección IP**: La dirección IP de tu **gateway**, **router** o **firewall**.
+- **Dirección MAC**: La dirección MAC LAN de tu **gateway**, **router** o **firewall**.
+- **Puertos**: Indica el puerto donde está conectado tu **gateway**, **router** o **firewall**.
 5. Agregar la prevención a la tabla ARP y guardar la configuración.
 
 - **Firewall:** Se utiliza ARP inspection para que verifique los paquetes ARP que los compara con las entradas en la tabla ARP, además, también se puede utilizar Dynamic ARP inspection que es donde interpreta todas las solicitudes y respuestas del ARP para asegurarse que solo ingresen las solicitudes y respuestas validas.
 
 - **Configuración en el Firewall**:
-        1. Acceder a la configuración del firewall.
-        2. Habilitar **ARP Inspection**.
-        3. Verificar que las entradas en la tabla ARP estén actualizadas y sean correctas.
-        4. Considerar también de configurar **IP Source Guard** para proteger contra ataques de spoofing que se pueden dar hasta en empresas.
+1. Acceder a la configuración del firewall.
+2. Habilitar **ARP Inspection**.
+3. Verificar que las entradas en la tabla ARP estén actualizadas y sean correctas.
+4. Considerar también de configurar **IP Source Guard** para proteger contra ataques de spoofing que se pueden dar hasta en empresas.
   
 **4. Formula un plan para educar a los empleados sobre medidas de seguridad quepueden tomar para reducir el riesgo de ataques futuros.**
 
