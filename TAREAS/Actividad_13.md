@@ -133,7 +133,7 @@ Problemas de configuración de Paramiko: Asegúrate de que Paramiko esté instal
  vulnerabilidades como ataques de intermediario y configuraciones erróneas de certificados.
  La evaluación incluirá pruebas de penetración y revisión de configuraciones.
  
-````
+
 Evaluar la seguridad del sistema implementado, especialmente en un entorno que involucra conexiones SSH, túneles SSL/TLS y LDAP, es crucial para identificar y mitigar posibles vulnerabilidades. Aquí hay algunas consideraciones sobre cómo abordar estas preocupaciones:
 
 ### 1. Pruebas de Penetración:
@@ -183,7 +183,7 @@ Evaluar la seguridad del sistema implementado, especialmente en un entorno que i
    - Realizar auditorías de seguridad periódicas para evaluar continuamente la postura de seguridad del sistema e identificar posibles áreas de mejora.
 
 Al seguir estas medidas y realizar pruebas de penetración y revisiones de configuraciones de forma regular, se puede fortalecer la seguridad del sistema y mitigar posibles vulnerabilidades, incluyendo ataques de intermediario y configuraciones erróneas de certificados.
-````
+
 
 ## PROBLEMA 4: Simulación de interpolaridad de red con múltiples protocolos
 
