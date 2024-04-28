@@ -327,39 +327,31 @@ node.connect_to_peer('127.0.0.1', 6000)
 
 ###   Parte 2: Gestión de recursos y distribución de carga
 
-#
+# Código:
+````
 from OpenSSL import crypto
 
 class LoadBalancer:
     def __init__(self):
         self.nodes = []
-
     def add_node(self, node):
         self.nodes.append(node)
-
     def assign_load_based_on_resources(self, task):
         # Ordenar los nodos por recursos disponibles de manera descendente
         sorted_nodes = sorted(self.nodes, key=lambda x: x.available_resources, reverse=True)
         # Asignar la tarea al nodo con más recursos disponibles
         sorted_nodes[0].handle_task(task)
-
     def round_robin(self, task):
         # Implementar algoritmo round-robin para distribuir tareas de manera equitativa
-        node_index = len(self.nodes) % len(self.nodes)
-        self.nodes[node_index].handle_task(task)
-
+        node_index = len(self.nodes) % len(self.nodes)  self.nodes[node_index].handle_task(task)
 class Node:
     def __init__(self, name, available_resources):
         self.name = name
         self.available_resources = available_resources
-
     def handle_task(self, task):
         print(f"Task '{task}' handled by node '{self.name}'")
-
-
 def create_self_signed_cert(cert_file, key_file):
-    k = crypto.PKey()
-    k.generate_key(crypto.TYPE_RSA, 2048)
+    k = crypto.PKey()    k.generate_key(crypto.TYPE_RSA, 2048)
     cert = crypto.X509()
     cert.get_subject().C = "US"
     cert.get_subject().ST = "California"
@@ -369,37 +361,28 @@ def create_self_signed_cert(cert_file, key_file):
     cert.get_subject().CN = "mydomain.com"
     cert.set_serial_number(1000)
     cert.gmtime_adj_notBefore(0)
-    cert.gmtime_adj_notAfter(10 * 365 * 24 * 60 * 60)
-    cert.set_issuer(cert.get_subject())
+    cert.gmtime_adj_notAfter(10 * 365 * 24 * 60 * 60)    cert.set_issuer(cert.get_subject())
     cert.set_pubkey(k)
     cert.sign(k, 'sha256')
     open(cert_file, "wt").write(crypto.dump_certificate(crypto.FILETYPE_PEM, cert).decode('utf-8'))
     open(key_file, "wt").write(crypto.dump_privatekey(crypto.FILETYPE_PEM, k).decode('utf-8'))
-
 create_self_signed_cert('ldap_cert.pem', 'ldap_key.pem')
-
 # Ejemplo de uso
 lb = LoadBalancer()
-
 node1 = Node("Node1", available_resources=100)
 node2 = Node("Node2", available_resources=80)
 node3 = Node("Node3", available_resources=120)
-
 lb.add_node(node1)
 lb.add_node(node2)
 lb.add_node(node3)
-
 tasks = ["Task1", "Task2", "Task3", "Task4"]
-
-for task in tasks:
-    lb.assign_load_based_on_resources(task)
-
+for task in tasks:  lb.assign_load_based_on_resources(task)
 for task in tasks:
     lb.round_robin(task)
-
-# Resultados
 ````
+# Resultados
 
+````
 C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\venv\Scripts\python.exe C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\main.py 
 Task 'Task1' handled by node 'Node3'
 Task 'Task2' handled by node 'Node3'
@@ -409,11 +392,11 @@ Task 'Task1' handled by node 'Node1'
 Task 'Task2' handled by node 'Node1'
 Task 'Task3' handled by node 'Node1'
 Task 'Task4' handled by node 'Node1'
-
 Process finished with exit code 0
 ````
 # Parte 3: Seguridad en la Red P2P
-````
+
+```
 import socket
 import threading
 import hashlib
@@ -431,7 +414,6 @@ class Peer:
         self.key = self.generate_key(password)
         print(f"Node started on {self.host}:{self.port}")
         threading.Thread(target=self.accept_connections).start()
-
     def generate_key(self, password):
         salt = os.urandom(16)
         key = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
@@ -483,9 +465,9 @@ node = Peer('127.0.0.1', 5000, password)
 ````
 # Resultado
 
-````
+```
 C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\venv\Scripts\python.exe C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\main.py 
 Node started on 127.0.0.1:5000
-````
+```
 
 # Análisis
