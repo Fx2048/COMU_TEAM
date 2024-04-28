@@ -233,7 +233,7 @@ Escenario: Una startup tecnológica desea implementar una red P2P robusta para p
 3. Analiza los posibles problemas de seguridad asociados con una red P2P y proponesoluciones para mitigar estos riesgos.
 4. Evalúa el impacto de incorporar nodos que actúan tanto como clientes comoservidores. ¿Cómo gestionarías el balanceo de carga?
 
-Parte 1: Implementación de la Red P2P con Python
+### Parte 1: Implementación de la Red P2P con Python
 
 ````
  import socket
@@ -278,9 +278,9 @@ Parte 1: Implementación de la Red P2P con Python
  node = Peer('127.0.0.1', 5000)
  node.connect_to_peer('127.0.0.1', 6000)
 ````
-#  Parte 2: Gestión de recursos y distribución de carga
+###   Parte 2: Gestión de recursos y distribución de carga
 
-Parte 3: Seguridad en la Red P2P
+### Parte 3: Seguridad en la Red P2P
 ````
  import hashlib
  import os
