@@ -228,10 +228,45 @@ Escenario: Una startup tecnológica desea implementar una red P2P robusta para p
 
 1. Describe cómo se diferenciaría esta red P2P de una red cliente-servidor en términosde diseño de red y topología.
 
+- **Diferencias entre red P2P y red cliente-servidor en términos de diseño de red y topología**:
+
+   - **Red P2P (Peer-to-Peer)**: En una red P2P, los nodos actúan tanto como clientes como servidores, lo que significa que cada nodo tiene la capacidad de solicitar y proporcionar recursos. No hay un servidor centralizado, en su lugar, todos los nodos son iguales y se comunican directamente entre sí. La topología de red suele ser más distribuida y descentralizada, lo que permite una mayor resistencia a fallas y una escalabilidad más fácil. La redundancia de datos y la tolerancia a fallos suelen ser más altas en este tipo de red.
+
+   - **Red cliente-servidor**: En una red cliente-servidor, hay un servidor central que actúa como punto focal para el intercambio de recursos. Los clientes solicitan recursos al servidor, que los proporciona. La topología de red es más centralizada, lo que puede resultar en un único punto de fallo y problemas de escalabilidad si el servidor no puede manejar todas las solicitudes de los clientes.
+
 2. ¿Qué protocolos específicos usarías para gestionar las comunicaciones y elintercambio de archivos en esta red?
 
+
+- **Protocolos específicos para gestionar las comunicaciones y el intercambio de archivos en la red P2P**:
+
+   - **Protocolo BitTorrent**: Es un protocolo P2P popular para compartir archivos de forma descentralizada. Permite la distribución eficiente de archivos divididos en fragmentos entre los nodos de la red.
+   
+   - **Protocolo Kademlia**: Utilizado para construir redes P2P descentralizadas, como en el caso de sistemas de almacenamiento distribuido como IPFS (InterPlanetary File System). Ayuda en la localización eficiente de nodos y recursos en la red.
+   
+   - **Protocolo de Seguridad SSL/TLS**: Para garantizar la seguridad de las comunicaciones entre nodos, se puede implementar SSL/TLS para cifrar y autenticar las conexiones.
+
 3. Analiza los posibles problemas de seguridad asociados con una red P2P y proponesoluciones para mitigar estos riesgos.
+
+- **Posibles problemas de seguridad y soluciones para mitigar riesgos en una red P2P**:
+
+   - **Acceso no autorizado**: Implementar un sistema de autenticación robusto para garantizar que solo los usuarios autorizados puedan acceder a los recursos compartidos.
+   
+   - **Integridad de datos**: Utilizar firmas digitales para verificar la integridad de los archivos compartidos y evitar la manipulación no autorizada de los mismos.
+   
+   - **Malware y software malicioso**: Implementar medidas de detección y prevención de malware, como escaneo de archivos en busca de virus y limitación de tipos de archivos permitidos en la red.
+   
+   - **Ataques de denegación de servicio (DDoS)**: Implementar mecanismos de mitigación de DDoS, como limitación de la velocidad de transferencia por nodo o la implementación de listas blancas y negras de direcciones IP.
+
 4. Evalúa el impacto de incorporar nodos que actúan tanto como clientes comoservidores. ¿Cómo gestionarías el balanceo de carga?
+
+ - **Impacto de incorporar nodos que actúan tanto como clientes como servidores y gestión del balanceo de carga**:
+
+
+   - La inclusión de nodos que actúan como clientes y servidores aumenta la eficiencia de la red al distribuir la carga entre los nodos disponibles.
+   
+   - Se puede implementar un algoritmo de balanceo de carga que distribuya las solicitudes de recursos de manera equitativa entre los nodos disponibles, teniendo en cuenta factores como la capacidad de procesamiento y la carga actual de cada nodo.
+   
+   - Además, se pueden establecer políticas de prioridad para determinar qué nodos tienen preferencia para actuar como servidores en función de su disponibilidad y recursos disponibles. Esto ayudará a optimizar el rendimiento de la red P2P.
 
 ### Parte 1: Implementación de la Red P2P con Python
 
