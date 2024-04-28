@@ -271,94 +271,221 @@ Escenario: Una startup tecnológica desea implementar una red P2P robusta para p
 ### Parte 1: Implementación de la Red P2P con Python
 
 ````
- import socket
- import threading
- class Peer:
- def __init__(self, host, port):
-   self.host = host
-   self.port = port
-   self.peers = [] # List to keep track of peers
-   self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-   self.server.bind((self.host, self.port))
-   self.server.listen(5)
-   print(f"Node started on {self.host}:{self.port}")
-   threading.Thread(target=self.accept_connections).start()
-  def accept_connections(self):
-     while True:
-       client, address = self.server.accept()
-       print(f"Connected with {address[0]}:{address[1]}")
-       self.peers.append(client)
-       threading.Thread(target=self.handle_client, args=(client,)).start()
-   def handle_client(self, client):
-     while True:
-       try:
-           data = client.recv(1024)
-           if data:
-               print(f"Received: {data.decode()}")
-               self.broadcast_data(data, client)
-   except Exception as e:
-       print(f"Error: {e}")
-       client.close()
-       break
-  def broadcast_data(self, data, sender):
-   for peer in self.peers:
-       if peer is not sender:
-          peer.send(data)
-  def connect_to_peer(self, host, port):
- client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
- client.connect((host, port))
- self.peers.append(client)
- print(f"Connected to peer at {host}:{port}")
- # ejemplos de uso
- node = Peer('127.0.0.1', 5000)
- node.connect_to_peer('127.0.0.1', 6000)
+import socket
+import threading
+
+class Peer:
+    def __init__(self, host, port):
+        self.host = host
+        self.port = port
+        self.peers = [] # List to keep track of peers
+        self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server.bind((self.host, self.port))
+        self.server.listen(5)
+        print(f"Node started on {self.host}:{self.port}")
+        threading.Thread(target=self.accept_connections).start()
+
+    def accept_connections(self):
+        while True:
+            client, address = self.server.accept()
+            print(f"Connected with {address[0]}:{address[1]}")
+            self.peers.append(client)
+            threading.Thread(target=self.handle_client, args=(client,)).start()
+
+    def handle_client(self, client):
+        while True:
+            try:
+                data = client.recv(1024)
+                if data:
+                    print(f"Received: {data.decode()}")
+                    self.broadcast_data(data, client)
+            except Exception as e:
+                print(f"Error: {e}")
+                client.close()
+                self.peers.remove(client)
+                break
+
+    def broadcast_data(self, data, sender):
+        for peer in self.peers:
+            if peer is not sender:
+                peer.send(data)
+
+    def connect_to_peer(self, host, port):
+        client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        client.connect((host, port))
+        self.peers.append(client)
+        print(f"Connected to peer at {host}:{port}")
+
+# Ejemplos de uso
+node = Peer('127.0.0.1', 5000)
+node.connect_to_peer('127.0.0.1', 6000)
+
 ````
+# Resultados 
+# Análisis de código
+# Análisis de resultado
+
 ###   Parte 2: Gestión de recursos y distribución de carga
 
-### Parte 3: Seguridad en la Red P2P
+#
+from OpenSSL import crypto
+
+class LoadBalancer:
+    def __init__(self):
+        self.nodes = []
+
+    def add_node(self, node):
+        self.nodes.append(node)
+
+    def assign_load_based_on_resources(self, task):
+        # Ordenar los nodos por recursos disponibles de manera descendente
+        sorted_nodes = sorted(self.nodes, key=lambda x: x.available_resources, reverse=True)
+        # Asignar la tarea al nodo con más recursos disponibles
+        sorted_nodes[0].handle_task(task)
+
+    def round_robin(self, task):
+        # Implementar algoritmo round-robin para distribuir tareas de manera equitativa
+        node_index = len(self.nodes) % len(self.nodes)
+        self.nodes[node_index].handle_task(task)
+
+class Node:
+    def __init__(self, name, available_resources):
+        self.name = name
+        self.available_resources = available_resources
+
+    def handle_task(self, task):
+        print(f"Task '{task}' handled by node '{self.name}'")
+
+
+def create_self_signed_cert(cert_file, key_file):
+    k = crypto.PKey()
+    k.generate_key(crypto.TYPE_RSA, 2048)
+    cert = crypto.X509()
+    cert.get_subject().C = "US"
+    cert.get_subject().ST = "California"
+    cert.get_subject().L = "San Francisco"
+    cert.get_subject().O = "My Company"
+    cert.get_subject().OU = "My Organizational Unit"
+    cert.get_subject().CN = "mydomain.com"
+    cert.set_serial_number(1000)
+    cert.gmtime_adj_notBefore(0)
+    cert.gmtime_adj_notAfter(10 * 365 * 24 * 60 * 60)
+    cert.set_issuer(cert.get_subject())
+    cert.set_pubkey(k)
+    cert.sign(k, 'sha256')
+    open(cert_file, "wt").write(crypto.dump_certificate(crypto.FILETYPE_PEM, cert).decode('utf-8'))
+    open(key_file, "wt").write(crypto.dump_privatekey(crypto.FILETYPE_PEM, k).decode('utf-8'))
+
+create_self_signed_cert('ldap_cert.pem', 'ldap_key.pem')
+
+# Ejemplo de uso
+lb = LoadBalancer()
+
+node1 = Node("Node1", available_resources=100)
+node2 = Node("Node2", available_resources=80)
+node3 = Node("Node3", available_resources=120)
+
+lb.add_node(node1)
+lb.add_node(node2)
+lb.add_node(node3)
+
+tasks = ["Task1", "Task2", "Task3", "Task4"]
+
+for task in tasks:
+    lb.assign_load_based_on_resources(task)
+
+for task in tasks:
+    lb.round_robin(task)
+
+# Resultados
 ````
- import hashlib
- import os
- def generate_key(password):
- salt = os.urandom(16)
- key = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
- return salt + key
- def verify_key(stored_key, provided_password):
- salt = stored_key[:16]
- key = stored_key[16:]
- new_key =hashlib.pbkdf2_hmac('sha256', provided_password.encode('utf-8'), salt,
- 100000)
- return new_key == key
- password = "secure_password"
- key = generate_key(password)
- print("Key generated successfully.")
- print("Verification:", verify_key(key, password)
- import time
- def monitor_peers(peers):
- while True:
- for peer in peers:
- try:
- peer.send(b'ping')
- response = peer.recv(1024)
- if response != b'pong':
- raise Exception("Peer is not responding correctly.")
- except Exception as e:
- print(f"Peer {peer.getpeername()} failed: {e}")
- peers.remove(peer)
- time.sleep(60) # Check every minute
- # In the Peer class, handle 'ping' messages
- def handle_client(self, client):
- while True:
- try:
- data = client.recv(1024)
- if data:
- if data == b'ping':
- client.send(b'pong')
- else:
- print(f"Received: {data.decode()}")
- self.broadcast_data(data, client)
- except Exception as e:
- print(f"Error: {e}")
- client.close()
- break
+
+C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\venv\Scripts\python.exe C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\main.py 
+Task 'Task1' handled by node 'Node3'
+Task 'Task2' handled by node 'Node3'
+Task 'Task3' handled by node 'Node3'
+Task 'Task4' handled by node 'Node3'
+Task 'Task1' handled by node 'Node1'
+Task 'Task2' handled by node 'Node1'
+Task 'Task3' handled by node 'Node1'
+Task 'Task4' handled by node 'Node1'
+
+Process finished with exit code 0
 ````
+# Parte 3: Seguridad en la Red P2P
+````
+import socket
+import threading
+import hashlib
+import os
+
+class Peer:
+    def __init__(self, host, port, password):
+        self.host = host
+        self.port = port
+        self.peers = []  # List to keep track of peers
+        self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.server.bind((self.host, self.port))
+        self.server.listen(5)
+        self.password = password
+        self.key = self.generate_key(password)
+        print(f"Node started on {self.host}:{self.port}")
+        threading.Thread(target=self.accept_connections).start()
+
+    def generate_key(self, password):
+        salt = os.urandom(16)
+        key = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000)
+        return salt + key
+
+    def verify_key(self, stored_key, provided_password):
+        salt = stored_key[:16]
+        key = stored_key[16:]
+        new_key = hashlib.pbkdf2_hmac('sha256', provided_password.encode('utf-8'), salt, 100000)
+        return new_key == key
+
+    def accept_connections(self):
+        while True:
+            client, address = self.server.accept()
+            print(f"Connected with {address[0]}:{address[1]}")
+            if self.verify_key(self.key, self.password):
+                self.peers.append(client)
+                threading.Thread(target=self.handle_client, args=(client,)).start()
+                client.send(b'Authenticated successfully.')
+            else:
+                print("Authentication failed. Closing connection.")
+                client.send(b'Authentication failed. Closing connection.')
+                client.close()
+
+    def handle_client(self, client):
+        while True:
+            try:
+                data = client.recv(1024)
+                if data:
+                    if data == b'ping':
+                        client.send(b'pong')
+                    else:
+                        print(f"Received: {data.decode()}")
+                        self.broadcast_data(data, client)
+            except Exception as e:
+                print(f"Error: {e}")
+                client.close()
+                break
+
+    def broadcast_data(self, data, sender):
+        for peer in self.peers:
+            if peer is not sender:
+                peer.send(data)
+
+# Ejemplo de uso
+password = "secure_password"
+node = Peer('127.0.0.1', 5000, password)
+
+````
+# Resultado
+
+````
+C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\venv\Scripts\python.exe C:\Users\PROPIETARIO\PycharmProjects\pythonProject1\main.py 
+Node started on 127.0.0.1:5000
+````
+
+# Análisis
