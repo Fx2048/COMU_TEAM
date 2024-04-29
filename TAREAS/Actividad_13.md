@@ -1,5 +1,80 @@
-# Actividad 13 :  TCP/IP
+# Actividad 13 : TCP/IP
 
+## PROBLEMA 2: Implementación de un protocolo de redd personalizado sobre TCP
+
+### Contexto: 
+
+Diseñar un protocolo de aplicación personalizado para un sistema de archivosdistribuido que se ejecutará sobre TCP, utilizando técnicas como multiplexación y control deflujo.
+
+- *Para tu presentación y código a presentar puedes utilizar:*
+
+##### Objetivos:
+
+1. Diseño del protocolo: Definir el formato del mensaje, incluidas las cabeceras y lasextensiones de cabecera para manejar funcionalidades específicas como control deflujo y recuperación de errores.
+2. Implementación de control de flujo: Desarrollar un esquema de control de flujo paramanejar eficazmente la transferencia de datos sobre TCP.
+3. Simulación con Python: Simular el protocolo utilizando Python para evaluar surendimiento y robustez en escenarios de red simulados.
+
+#### Paso 1: Diseño del protocolo
+
+Vamos a definir un protocolo simple que incluya operaciones básicas como PUT, GET, yDELETE para interactuar con archivos en el sistema distribuido.
+
+- Ejemplo de Especificación del Protocolo:
+
+● PUT: Enviar un archivo al sistema.
+
+● GET: Recuperar un archivo del sistema.
+
+● DELETE: Eliminar un archivo del sistema.
+
+Cada mensaje tendrá una cabecera que incluye el tipo de operación, el tamaño del mensaje, y un número de secuencia para el control de flujo y la recuperación de errores
+#### Código en python:
+```
+class ProtocolMessage:
+    def __init__(self, operation, message_size, sequence_number):
+        self.operation = operation  # Tipo de operación (PUT, GET, DELETE)
+        self.message_size = message_size  # Tamaño del mensaje
+        self.sequence_number = sequence_number  # Número de secuencia para control de flujo
+
+class FileTransferProtocol:
+    def __init__(self):
+        self.sequence_number = 0  # Inicializar el número de secuencia
+    
+    def send_request(self, operation, file_data=None):
+        if operation == "PUT":
+            message_size = len(file_data) if file_data else 0
+            self.sequence_number += 1
+            request = ProtocolMessage(operation="PUT", message_size=message_size, sequence_number=self.sequence_number)
+        elif operation in ["GET", "DELETE"]:
+            request = ProtocolMessage(operation=operation, message_size=0, sequence_number=self.sequence_number)
+        else:
+            print("Invalid operation")
+            return
+        
+        # Simulación de envío del mensaje
+        print(f"Sending {operation} request: Operation={request.operation}, Size={request.message_size}, Sequence Number={request.sequence_number}")
+
+
+protocol = FileTransferProtocol()
+protocol.send_request("PUT", file_data="file_content")
+protocol.send_request("GET")
+protocol.send_request("DELETE")
+
+```
+#### Resultados:
+```
+Sending PUT request: Operation=PUT, Size=12, Sequence Number=1
+Sending GET request: Operation=GET, Size=0, Sequence Number=1
+Sending DELETE request: Operation=DELETE, Size=0, Sequence Number=1
+```
+Este código crea una clase `ProtocolMessage` que contiene la información requerida para cada mensaje del protocolo,donde la clase `FileTransferProtocol` incluye un método `send_request` que permite enviar solicitudes PUT, GET y DELETE, creando un objeto `ProtocolMessage` correspondiente para cada operación. Se simula el envío del mensaje imprimiendo los detalles de la solicitud en la consola, además, de haber añadido un número de secuencia que se incrementa con cada solicitud para el control de flujo en el sistema.
+
+#### Paso 2: Implementación de control de flujo
+
+##### Código Python para simulación del protocolo:
+
+#### Paso 3: Evaluación del protocolo
+
+- Después de implementar el protocolo, usaríamos herramientas como Wireshark paramonitorear la eficacia del control de flujo y el manejo de errores durante la transferencia dearchivos. Esto podría involucrar la simulación de condiciones de red adversas, como altalatencia y pérdida de paquetes, para ver cómo el protocolo se comporta y se recupera deestos problemas.
 
 ## PROBLEMA 3: Creación de un sistema de autenticación segura con LDAP y SSH
 
