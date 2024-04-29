@@ -13,16 +13,22 @@ datos confidenciales y requiere que la comunicación entre sucursales sea cifrad
 ### Preguntas:
 **¿Qué tipo de tecnología de WAN utilizarías para conectar las sucursales y por qué?
 (Considera opciones como Frame Relay, MPLS, etc.)**
+Debido a su capacidad para proporcionar conectividad segura, confiable y escalable, elegiría MPLS (Multiprotocol Label Switching) para conectar sucursales. Para aplicaciones importantes, MPLS prioriza el tráfico y optimiza la utilización del ancho de banda, ofreciendo un alto rendimiento y calidad de servicio (QoS). Además, MPLS es extremadamente adaptable y puede manejar una amplia gama de tipos de tráfico, incluidos datos, voz y video, lo que lo convierte en un excelente candidato para redes comerciales distribuidas.
 
 **Describe cómo implementarías el cifrado en la red. ¿Qué tipos de claves y
 protocolos utilizarías?**
+Principalmentes tenemos que identificar y analizar los requisitos de seguridad para determinar que datos y donde necesitan cifrar. En eso el algoritmo que elegiriamos seria AES se utiliza para el cifrado simétrico de datos, RSA se utiliza para cifrado asimétrico y la firma digital o ECC que ofrece una mayor eficiencia en términos de tamaño de clase y rendimiento. Cualquieres de los algoritmos nos ayudara para la creación de claces sólidas, incluyendo datos y asimétricas para comunicaciones seguras. Implentaria los protocolos como IPsec, SSL/TLS y VPNs para proteger le trafico IP, de aplicaciones y conexiones remotas. Y finalizando, la configuración establecida políticamente en dispositivos de res, cpmp IPsec en routers y firewalls, el SSL/TLS en servidores web, para aplicar el cifredo necesario.   
 
 **Dibuja una topología de red que incluya dispositivos como routers, switches, y
 firewalls. Explica la función de cada dispositivo en tu diseño. Puedes utilizar Packet
 Tracer**
 
+
 **¿Cómo garantizarías la integridad y autenticidad de los datos transmitidos entre las
 sucursales? Detalla el uso de checksums o CRC.**
+Usaremos el CRC(Cyclic Redundancy Check) que nos permitira detectar cambios en los datos durante la transmisión y nos proporciona una forma de verificar la integridad y autenticidad de los datos transmitidos entre las sucursales.
+Esto ayuda a garantizar que los datos lleguen sin modificarciones no autorizadas y que provengan de la fuente esperada.
+
 ### Requisitos:
 
 * Conexión WAN Segura: Utilizar VPNs para asegurar todas las comunicaciones entre sucursales.
