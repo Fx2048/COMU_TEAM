@@ -2,6 +2,15 @@
 ## PROBLEMA 1: Diseño de un sistema de entrega y recuperación de correo electrónico
 ### Contexto:
 Una empresa necesita diseñar un sistema de correo electrónico robusto que utilice SMTP, IMAP, y SSL/TLS para la entrega y recuperación segura de correo electrónico.
+#### Objetivo:
+Implementaremos servidores SMTP y IMAP usando librerías en Python que simulen el comportamiento de estos protocolos.
+
+Manejo de SSL/TLS:
+Utilizaremos SSL/TLS para encriptar las conexiones SMTP e IMAP, garantizando la confidencialidad y la integridad de los datos transmitidos.
+
+Integración con DHCP y NAT:
+Discutiremos cómo las direcciones IP dinámicas asignadas por DHCP y la traducción de direcciones realizada por NAT pueden afectar la configuración y el funcionamiento de los servidores de correo.
+
 #### Paso 1: Configuración del servidor SMTP y IMAP en Python
 #### Paso 2: Implementación de SSL/TLS
 #### Paso 3: Manejo de Certificados X.509
