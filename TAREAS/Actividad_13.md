@@ -1,5 +1,11 @@
 ![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/950b02d6-e31e-415a-834b-75a7292bf9d2)
-
+## PROBLEMA 1: Diseño de un sistema de entrega y recuperación de correo electrónico
+### Contexto:
+Una empresa necesita diseñar un sistema de correo electrónico robusto que utilice SMTP, IMAP, y SSL/TLS para la entrega y recuperación segura de correo electrónico.
+#### Paso 1: Configuración del servidor SMTP y IMAP en Python
+#### Paso 2: Implementación de SSL/TLS
+#### Paso 3: Manejo de Certificados X.509
+#### Paso 4: Discusión sobre DHCP y NAT
 
 ## PROBLEMA 2: Implementación de un protocolo de red personalizado sobre TCP
 
