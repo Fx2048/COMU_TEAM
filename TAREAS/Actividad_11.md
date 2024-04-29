@@ -1,4 +1,4 @@
-# ACTIVIDAD 11: Conceptos de introducción a las rede
+![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/52d8345b-1ccb-43c1-a23f-64fef1c29528)
 
 
 # EXPOSICIÓN:✏
