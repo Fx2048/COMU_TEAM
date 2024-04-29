@@ -1,3 +1,5 @@
+![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/a5048e88-c116-4353-acd7-2e3f5a210839)
+
 ![1](https://github.com/Fx2048/COMU_TEAM/assets/131219987/49bc81ac-f0d9-4e76-958d-151ce662eff6)
 ![2](https://github.com/Fx2048/COMU_TEAM/assets/131219987/25c59b94-25e6-4b76-ae96-4da2625b2e5e)
 ![3](https://github.com/Fx2048/COMU_TEAM/assets/131219987/c240ecb1-2173-474d-97e7-020e05c1e9d3)
