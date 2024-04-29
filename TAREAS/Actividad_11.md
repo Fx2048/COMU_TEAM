@@ -41,6 +41,10 @@ Esto ayuda a garantizar que los datos lleguen sin modificarciones no autorizadas
 **Dibuja una topología de red para este escenario que incluya los dispositivos de red necesarios en cada sucursal**
 
 **Explica cómo cada dispositivo contribuye a la seguridad y eficiencia de la red**
+Cada dispositivo desempeña un papel importante tanto en la seguridad como en la eficiencia de la red, proporcionando funciones especidicas que ayudan a proteger los activos de la red y optimizar el rendimiento de la misma. Como:
+* En **Firewall** filtra el tráfico no deseado y reduce la congestión de la red al bloquear o permitir selectivamentes ciertos tipos de tráfico, optimizando así el uso del ancho de banda. Además previniendo intrusiones y ataques maliciosos mediante el control del tráfico estrante y saliente.
+* Con el **router** su funcion es el enrutamiento seguro y control de acceso, implementando listas de contro de acceso(ACL) para proteger las redes internas. Dirige el tráfico de manera inteligente entre las redes, optimizando el rendimiento y minimizando la congestión de técnicas como el enrutamiento dinámico.
+* Y para **switch** facilita la conexión de las red local y contribuye a la seguridad al aislar el tráfico de las redes mediantes VLANs y segmentación de red. ;ejora la eficiencia para faciliar el tráfio de datos dentro de la red local, optimizando el rendimiento mediante el almacenamiento y reenvío selectivo de tramas.   
 
 ### Parte 2: Configuración de VPN con Python 
 #### Código:
