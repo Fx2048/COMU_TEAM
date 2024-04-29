@@ -1,10 +1,11 @@
-# Actividad 13 : TCP/IP
+![image](https://github.com/Fx2048/COMU_TEAM/assets/131219987/950b02d6-e31e-415a-834b-75a7292bf9d2)
 
-## PROBLEMA 2: Implementación de un protocolo de redd personalizado sobre TCP
+
+## PROBLEMA 2: Implementación de un protocolo de red personalizado sobre TCP
 
 ### Contexto: 
 
-Diseñar un protocolo de aplicación personalizado para un sistema de archivosdistribuido que se ejecutará sobre TCP, utilizando técnicas como multiplexación y control deflujo.
+Diseñar un protocolo de aplicación personalizado para un sistema de archivosdistribuido que se ejecutará sobre TCP, utilizando técnicas como multiplexación y control de flujo.
 
 - *Para tu presentación y código a presentar puedes utilizar:*
 
