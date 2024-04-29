@@ -1,7 +1,7 @@
 # ACTIVIDAD 11: Conceptos de introducción a las rede
 
 
-# EXPOSICIÓN:
+# EXPOSICIÓN:✏
 https://github.com/Fx2048/COMU_TEAM/blob/main/TAREAS/Actividad_11_Exposicion.md
 
 ## Problema 1: Diseño de red segura💻​ 
@@ -9,6 +9,20 @@ https://github.com/Fx2048/COMU_TEAM/blob/main/TAREAS/Actividad_11_Exposicion.md
 Una empresa necesita diseñar una red segura que conecte tres sucursales
 ubicadas en diferentes ciudades utilizando tecnología WAN y LAN. La empresa maneja
 datos confidenciales y requiere que la comunicación entre sucursales sea cifrada.
+
+### Preguntas:
+**¿Qué tipo de tecnología de WAN utilizarías para conectar las sucursales y por qué?
+(Considera opciones como Frame Relay, MPLS, etc.)**
+
+**Describe cómo implementarías el cifrado en la red. ¿Qué tipos de claves y
+protocolos utilizarías?**
+
+**Dibuja una topología de red que incluya dispositivos como routers, switches, y
+firewalls. Explica la función de cada dispositivo en tu diseño. Puedes utilizar Packet
+Tracer**
+
+**¿Cómo garantizarías la integridad y autenticidad de los datos transmitidos entre las
+sucursales? Detalla el uso de checksums o CRC.**
 
 ## PROBLEMA 2: Optimización de protocolos y caché
 
