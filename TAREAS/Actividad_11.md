@@ -23,6 +23,78 @@ Tracer**
 
 **¿Cómo garantizarías la integridad y autenticidad de los datos transmitidos entre las
 sucursales? Detalla el uso de checksums o CRC.**
+### Requisitos:
+
+* Conexión WAN Segura: Utilizar VPNs para asegurar todas las comunicaciones entre sucursales.
+* Cifrado: Implementar cifrado de extremo a extremo.
+* Topología de Red: Incluir dispositivos de red como routers, switches y firewalls.
+* Automatización: Usar Python para configurar aspectos de la red automáticamente.
+
+### Parte 1: Diseño de topología de red
+#### Pregunta
+**Dibuja una topología de red para este escenario que incluya los dispositivos de red necesarios en cada sucursal**
+
+**Explica cómo cada dispositivo contribuye a la seguridad y eficiencia de la red**
+
+### Parte 2: Configuración de VPN con Python 
+#### Código:
+```
+import paramiko
+
+def connect_to_router(hostname, username, password):
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(hostname, username=username, password=password)
+    return client
+
+def configure_ipsec_vpn(client, peer_ip, local_network, remote_network):
+    commands = [
+        'crypto isakmp policy 10',
+        'encr aes 256',
+        'authentication pre-share',
+        'group 5',
+        'crypto isakmp key mysharedsecret address ' + peer_ip,
+        'crypto ipsec transform-set myset esp-aes 256 esp-sha-hmac',
+        'crypto map mymap 10 ipsec-isakmp',
+        'set peer ' + peer_ip,
+        'set transform-set myset',
+        'match address 100',
+        'access-list 100 permit ip ' + local_network + ' ' + remote_network,
+        'interface g0/0',
+        'crypto map mymap',
+        'end'
+    ]
+    for command in commands:
+        stdin, stdout, stderr = client.exec_command(command)
+        print(stdout.read().decode())
+    client.close()
+
+# Ejemplos de uso
+hostname = '192.168.1.1'
+username = 'admin'
+password = 'password'
+client = connect_to_router(hostname, username, password)
+configure_ipsec_vpn(client, '192.168.2.1', '192.168.1.0 255.255.255.0', '192.168.3.0 255.255.255.0')
+```
+#### Resultados:
+```
+crypto isakmp policy 10
+encryption aes
+authentication pre-share
+group 5
+crypto isakmp key mysharedsecret address 192.168.2.1
+crypto ipsec transform-set myset esp-aes esp-sha-hmac
+crypto map mymap 10 ipsec-isakmp
+set peer 192.168.2.1
+set transform-set myset
+match address 100
+access-list 100 permit ip 192.168.1.0 255.255.255.0 192.168.3.0 255.255.255.0
+interface g0/0
+crypto map mymap
+end
+```
+Cada línea corresponde a la respuesta del router. Si hay errores en la configuración con la conexión SSH, se imprimirán mensajes de error.
+Si la conexión SSH no se puede establecer, indicando que el script no pudo conectarse al router,por lo tanto, no pudo configurar la VPN. 
 
 ## PROBLEMA 2: Optimización de protocolos y caché
 
