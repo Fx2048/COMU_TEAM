@@ -4,6 +4,12 @@
 # EXPOSICIÓN:
 https://github.com/Fx2048/COMU_TEAM/blob/main/TAREAS/Actividad_11_Exposicion.md
 
+## Problema 1: Diseño de red segura💻​ 
+### Escenario: 
+Una empresa necesita diseñar una red segura que conecte tres sucursales
+ubicadas en diferentes ciudades utilizando tecnología WAN y LAN. La empresa maneja
+datos confidenciales y requiere que la comunicación entre sucursales sea cifrada.
+
 ## PROBLEMA 2: Optimización de protocolos y caché
 
 ### Escenario:
