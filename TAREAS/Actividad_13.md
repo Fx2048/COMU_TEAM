@@ -12,6 +12,50 @@ Integración con DHCP y NAT:
 Discutiremos cómo las direcciones IP dinámicas asignadas por DHCP y la traducción de direcciones realizada por NAT pueden afectar la configuración y el funcionamiento de los servidores de correo.
 
 #### Paso 1: Configuración del servidor SMTP y IMAP en Python
+En esta oportunidad usaremos las bibliotecas smtplib para SMTP e imaplib para IMAP en Python. Smtplib es una biblioteca estándar que proporciona un cliente SMTP para enviar correos electrónicos a cualquier servidor de Internet. Por otro lado, imaplib es una biblioteca para acceder y gestionar correos electrónicos almacenados en un servidor remoto utilizando el protocolo IMAP (Internet Message Access Protocol). Estas bibliotecas permiten la integración de funcionalidades de correo electrónico de manera sencilla y eficiente.
+
+````
+import smtplib
+import imaplib
+from email.mime.text import MIMEText
+
+def setup_smtp_server():
+    server = smtplib.SMTP_SSL('smtp.example.com', 465)
+    server.login('user@example.com', 'password')
+    return server
+
+def send_email(server):
+    msg = MIMEText('This is a test email.')
+    msg['Subject'] = 'SMTP SSL Test'
+    msg['From'] = 'user@example.com'
+    msg['To'] = 'recipient@example.com'
+    server.send_message(msg)
+    server.quit()
+
+def setup_imap_server():
+    mail = imaplib.IMAP4_SSL('imap.example.com')
+    mail.login('user@example.com', 'password')
+    return mail
+
+def fetch_emails(mail):
+    mail.select('inbox')
+    result, data = mail.search(None, 'ALL')
+    mail_ids = data[0]
+    id_list = mail_ids.split()
+    latest_email_id = id_list[-1]
+    result, data = mail.fetch(latest_email_id, '(RFC822)')
+    raw_email = data[0][1]
+    print(raw_email.decode('utf-8'))
+    mail.logout()
+
+smtp_server = setup_smtp_server()
+send_email(smtp_server)
+
+imap_server = setup_imap_server()
+fetch_emails(imap_server)
+
+````
+
 #### Paso 2: Implementación de SSL/TLS
 #### Paso 3: Manejo de Certificados X.509
 #### Paso 4: Discusión sobre DHCP y NAT
