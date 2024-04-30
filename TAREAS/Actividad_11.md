@@ -13,19 +13,27 @@ datos confidenciales y requiere que la comunicación entre sucursales sea cifrad
 ### Preguntas:
 **¿Qué tipo de tecnología de WAN utilizarías para conectar las sucursales y por qué?
 (Considera opciones como Frame Relay, MPLS, etc.)**
+
 Debido a su capacidad para proporcionar conectividad segura, confiable y escalable, elegiría MPLS (Multiprotocol Label Switching) para conectar sucursales. Para aplicaciones importantes, MPLS prioriza el tráfico y optimiza la utilización del ancho de banda, ofreciendo un alto rendimiento y calidad de servicio (QoS). Además, MPLS es extremadamente adaptable y puede manejar una amplia gama de tipos de tráfico, incluidos datos, voz y video, lo que lo convierte en un excelente candidato para redes comerciales distribuidas.
 
 **Describe cómo implementarías el cifrado en la red. ¿Qué tipos de claves y
 protocolos utilizarías?**
+
 Principalmentes tenemos que identificar y analizar los requisitos de seguridad para determinar que datos y donde necesitan cifrar. En eso el algoritmo que elegiriamos seria AES se utiliza para el cifrado simétrico de datos, RSA se utiliza para cifrado asimétrico y la firma digital o ECC que ofrece una mayor eficiencia en términos de tamaño de clase y rendimiento. Cualquieres de los algoritmos nos ayudara para la creación de claces sólidas, incluyendo datos y asimétricas para comunicaciones seguras. Implentaria los protocolos como IPsec, SSL/TLS y VPNs para proteger le trafico IP, de aplicaciones y conexiones remotas. Y finalizando, la configuración establecida políticamente en dispositivos de res, cpmp IPsec en routers y firewalls, el SSL/TLS en servidores web, para aplicar el cifredo necesario.   
 
 **Dibuja una topología de red que incluya dispositivos como routers, switches, y
 firewalls. Explica la función de cada dispositivo en tu diseño. Puedes utilizar Packet
 Tracer**
 
+![image](https://github.com/nardyliz12/Comunicacion_datos_y_redes_pe/assets/151795724/c8ae1119-ba7d-4f8d-83c4-fa3d615974b9)
+
+  - Routers: Conecta las sucursales a través de la red MPLS.
+  - Switches: Distribuye el tráfico de red dentro de cada sucursal.
+  - Firewalls: Protege cada sucursal de accesos no autorizados y filtra el tráfico.
 
 **¿Cómo garantizarías la integridad y autenticidad de los datos transmitidos entre las
 sucursales? Detalla el uso de checksums o CRC.**
+
 Usaremos el CRC(Cyclic Redundancy Check) que nos permitira detectar cambios en los datos durante la transmisión y nos proporciona una forma de verificar la integridad y autenticidad de los datos transmitidos entre las sucursales.
 Esto ayuda a garantizar que los datos lleguen sin modificarciones no autorizadas y que provengan de la fuente esperada.
 
@@ -37,15 +45,20 @@ Esto ayuda a garantizar que los datos lleguen sin modificarciones no autorizadas
 * Automatización: Usar Python para configurar aspectos de la red automáticamente.
 
 ### Parte 1: Diseño de topología de red
+
 #### Pregunta
+
 **Dibuja una topología de red para este escenario que incluya los dispositivos de red necesarios en cada sucursal**
 
+![image](https://github.com/nardyliz12/Comunicacion_datos_y_redes_pe/assets/151795724/6176a6eb-8214-4adc-ac4e-e290609fbbc3)
+
 **Explica cómo cada dispositivo contribuye a la seguridad y eficiencia de la red**
+
 Cada dispositivo desempeña un papel importante tanto en la seguridad como en la eficiencia de la red, proporcionando funciones especidicas que ayudan a proteger los activos de la red y optimizar el rendimiento de la misma. Como:
+
 * En **Firewall** filtra el tráfico no deseado y reduce la congestión de la red al bloquear o permitir selectivamentes ciertos tipos de tráfico, optimizando así el uso del ancho de banda. Además previniendo intrusiones y ataques maliciosos mediante el control del tráfico estrante y saliente.
 * Con el **router** su funcion es el enrutamiento seguro y control de acceso, implementando listas de contro de acceso(ACL) para proteger las redes internas. Dirige el tráfico de manera inteligente entre las redes, optimizando el rendimiento y minimizando la congestión de técnicas como el enrutamiento dinámico.
 * Y para **switch** facilita la conexión de las red local y contribuye a la seguridad al aislar el tráfico de las redes mediantes VLANs y segmentación de red. ;ejora la eficiencia para faciliar el tráfio de datos dentro de la red local, optimizando el rendimiento mediante el almacenamiento y reenvío selectivo de tramas.   
-
 ### Parte 2: Configuración de VPN con Python 
 #### Código:
 ```
@@ -105,6 +118,64 @@ end
 ```
 Cada línea corresponde a la respuesta del router. Si hay errores en la configuración con la conexión SSH, se imprimirán mensajes de error.
 Si la conexión SSH no se puede establecer, indicando que el script no pudo conectarse al router,por lo tanto, no pudo configurar la VPN. 
+
+#### Preguntas adicionales:
+
+1. **¿Cómo implementarias el cifrado de extremo a extremo además de la VNP? Considera el uso de claves públicas y privadas.**
+
+- Para implementar el cifrado de extremo a extremo además de una VPN, se podría hacer siguiendo los siguientes pasos:
+
+   - Generación de claves: Cada sucursal genera un par de claves, donde una pública y la otra privada, la clave pública se puede compartir abiertamente, mientras que la clave privada debe mantenerse segura y no ser compartida.
+   - Intercambio de claves públicas: Las sucursales intercambiarían sus claves públicas entre sí de manera segura.
+   - Cifrado y descifrado de mensajes: Cuando una sucursal envía un mensaje a otra sucursal, deberia cifrar el mensaje utilizando la clave pública del destinatario y al recibir el mensaje, el destinatario lo tendria que descifrar con la clave privada.
+    
+2. **Proporciona un esquema para implementar un sistema robusto de logs y monitoreo de la red utilizando herramientas modernas de gestión de red. ¿Cómo podría python automatizar la recopilación?**
+
+  - Herramientas de monitoreo de red: Podrimos utilizar herramientas como Nagios, Zabbix o Pandora FMS para monitorear la red y generar los logs.
+  - Gestión de logs: Tenemos que configurar un sistema centralizado para la gestión de logs, como Elasticsearch, Logstash y Kibana (ELK), para asi recopilar, almacenar y analizar los logs.
+  - Automatización con Python: podemos escribir scripts en Python que utilicen bibliotecas como logging para automatizar la recopilación y el procesamiento de los logs, donde estos podrían ejecutarse en intervalos regulares o en respuesta a eventos específicos.
+
+#### Código de python:
+```
+import subprocess
+import shutil
+import logging
+from logging.handlers import RotatingFileHandler
+
+# Configuración básica del logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('LogMonitor')
+
+# Handler para rotar los logs cada cierto tamaño
+handler = RotatingFileHandler('network_logs.log', maxBytes=2000, backupCount=5)
+logger.addHandler(handler)
+
+def monitor_network():
+    # Verificar si 'ping' está disponible en el sistema
+    if shutil.which('ping') is None:
+        logger.error("'ping' no está disponible en este sistema.")
+        return
+
+    # Comando para obtener información de la red
+    command = ['ping', 'www.google.com', '-c', '4']
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+
+    # Log de la salida del comando
+    if process.returncode == 0:
+        logger.info(f'Success: {stdout}')
+    else:
+        logger.error(f'Error: {stderr}')
+
+if __name__ == '__main__':
+    # Ejecutar el monitoreo de la red
+    monitor_network()
+```
+#### Resultados.
+```
+ERROR:LogMonitor:'ping' no está disponible en este sistema.
+```
+Este código implementa un monitor de red básico utilizando el módulo `subprocess` para ejecutar el comando `ping` en el sistema, donde comienza configurando el registro de eventos, estableciendo un nivel de registro a `INFO` y creando un logger llamado "LogMonitor" que se asocia con un archivo de registro rotativo llamado "network_logs.log" esta función `monitor_network()` verifica la disponibilidad del comando `ping` en el sistema, y si está disponible, ejecuta el comando para realizar un ping a "www.google.com" con un recuento de 4 intentos, donde la salida del comando se registra en el archivo de registro según el resultado de la ejecución y finalmente, el script se ejecuta cuando se llama directamente, iniciando el monitoreo de red.
 
 ## PROBLEMA 2: Optimización de protocolos y caché
 
