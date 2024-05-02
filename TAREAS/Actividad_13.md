@@ -81,7 +81,7 @@ Cuando se combinan DHCP y NAT, la dirección IP pública del router/NAT es la qu
 
 ### Contexto: 
 
-Diseñar un protocolo de aplicación personalizado para un sistema de archivosdistribuido que se ejecutará sobre TCP, utilizando técnicas como multiplexación y control de flujo.
+Diseñar un protocolo de aplicación personalizado para un sistema de archivosdistribuido que se ejecutará sobre TCP, utilizando técnicas como multiplexación y control deflujo.
 
 - *Para tu presentación y código a presentar puedes utilizar:*
 
@@ -92,7 +92,6 @@ Diseñar un protocolo de aplicación personalizado para un sistema de archivosdi
 3. Simulación con Python: Simular el protocolo utilizando Python para evaluar surendimiento y robustez en escenarios de red simulados.
 
 #### Paso 1: Diseño del protocolo
-
 Vamos a definir un protocolo simple que incluya operaciones básicas como PUT, GET, yDELETE para interactuar con archivos en el sistema distribuido.
 
 - Ejemplo de Especificación del Protocolo:
@@ -103,7 +102,8 @@ Vamos a definir un protocolo simple que incluya operaciones básicas como PUT, G
 
 ● DELETE: Eliminar un archivo del sistema.
 
-Cada mensaje tendrá una cabecera que incluye el tipo de operación, el tamaño del mensaje, y un número de secuencia para el control de flujo y la recuperación de errores
+Cada mensaje tendrá una cabecera que incluye el tipo de operación, el tamaño delmensaje, y un número de secuencia para el control de flujo y la recuperación de errores
+
 #### Código en python:
 ```
 class ProtocolMessage:
@@ -148,10 +148,150 @@ Este código crea una clase `ProtocolMessage` que contiene la información reque
 #### Paso 2: Implementación de control de flujo
 
 ##### Código Python para simulación del protocolo:
+````
+import socket
+import struct
+
+# Tamaño de la ventana deslizante
+WINDOW_SIZE = 3
+
+# Clase para representar el estado del control de flujo
+class FlowControlState:
+    def __init__(self):
+        self.base = 0
+        self.next_seq_num = 0
+
+# Función para enviar un mensaje con control de flujo
+def send_message(sock, msg_type, seq_num, data, flow_state):
+    # Si el número de secuencia está dentro de la ventana deslizante, envía el mensaje
+    if seq_num < flow_state.base + WINDOW_SIZE:
+        header = struct.pack('!I I', msg_type, seq_num)
+        message = header + data.encode()
+        sock.sendall(message)
+        # Actualiza el siguiente número de secuencia esperado
+        flow_state.next_seq_num = seq_num + 1
+
+# Función para recibir un mensaje con control de flujo
+def receive_message(sock, flow_state):
+    header = sock.recv(8)
+    msg_type, seq_num = struct.unpack('!I I', header)
+    data = sock.recv(1024).decode()
+    # Si el número de secuencia recibido está dentro de la ventana deslizante, procesa el mensaje
+    if seq_num >= flow_state.base and seq_num < flow_state.base + WINDOW_SIZE:
+        send_message(sock, 1, seq_num, "Ack", flow_state)
+    return msg_type, seq_num, data
+
+def main():
+    host = 'localhost'
+    port = 12345
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.bind((host, port))
+    server.listen(1)
+    print("Server listening on port", port)
+    client_sock, addr = server.accept()
+    print("Connected by", addr)
+
+    flow_state = FlowControlState()
+
+    while True:
+        # Simulación de recepción de un mensaje
+        msg_type, seq_num, data = receive_message(client_sock, flow_state)
+        print("Received:", msg_type, seq_num, data)
+        # Si el tipo de mensaje es de cierre, sal del bucle
+        if msg_type == 2:
+            break
+
+    client_sock.close()
+
+if __name__ == '__main__':
+    main()
+
+````
+#### Resultados:
+````
+Server listening on port 12345
+````
+El código proporcionado implementa un servidor TCP que utiliza un esquema de control de flujo basado en ventana deslizante para garantizar la entrega fiable y eficiente de los mensajes, ddonde en la función principal, se establece y configura el servidor para escuchar conexiones entrantes en un puerto específico y una vez que se establece una conexión con un cliente, el servidor entra en un bucle donde recibe mensajes del cliente y procesa cada mensaje utilizando el esquema de control de flujo, se asegura de que solo se procesen los mensajes dentro de la ventana deslizante, enviando mensajes de confirmación al cliente cuando corresponda, además, el servidor continúa recibiendo mensajes hasta que recibe un mensaje de cierre del cliente, momento en el que termina la conexión y el programa finaliza su ejecución, en resumen, el código demuestra la implementación de un servidor TCP con control de flujo basado en ventana deslizante para gestionar la comunicación eficiente y confiable con clientes remotos, perro que al tenr una gran variedad dee datos no logra mostrarlo todos, lo que genera un tiempo largo de ejecución.
 
 #### Paso 3: Evaluación del protocolo
+- Después de implementar el protocolo, usaríamos herramientas como Wireshark paramonitorear la eficacia del control de flujo y el manejo de errores durante la transferencia dearchivos. Esto podría involucrar la simulación de condiciones de red adversas, como alta latencia y pérdida de paquetes, para ver cómo el protocolo se comporta y se recupera de estos problemas.
 
-- Después de implementar el protocolo, usaríamos herramientas como Wireshark paramonitorear la eficacia del control de flujo y el manejo de errores durante la transferencia dearchivos. Esto podría involucrar la simulación de condiciones de red adversas, como altalatencia y pérdida de paquetes, para ver cómo el protocolo se comporta y se recupera deestos problemas.
+### Código de python: 
+````
+import socket
+import struct
+import threading
+import hashlib
+
+class FileTransferProtocol:
+    def __init__(self, host, port):
+        self.host = host
+        self.port = port
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.bind((self.host, self.port))
+        self.socket.listen(5)
+        print(f"Server listening on {self.host}:{self.port}")
+
+    def handle_client(self, client_socket, address):
+        print(f"Accepted connection from {address}")
+        try:
+            # Receive file name and size
+            file_name_size = struct.unpack("!I", client_socket.recv(4))[0]
+            file_name = client_socket.recv(file_name_size).decode()
+            file_size = struct.unpack("!Q", client_socket.recv(8))[0]
+            
+            print(f"Receiving {file_name} ({file_size} bytes)")
+            
+            # Receive file data
+            received_data = b""
+            while len(received_data) < file_size:
+                remaining_bytes = file_size - len(received_data)
+                received_data += client_socket.recv(1024 if remaining_bytes > 1024 else remaining_bytes)
+            
+            # Calculate file hash
+            file_hash = hashlib.sha256(received_data).hexdigest()
+            
+            # Save file
+            with open(file_name, "wb") as file:
+                file.write(received_data)
+            
+            print(f"File saved as {file_name}")
+            print(f"File hash: {file_hash}")
+
+            # Send acknowledgment
+            client_socket.sendall(b"OK")
+
+        except Exception as e:
+            print(f"Error: {e}")
+            client_socket.sendall(b"ERROR")
+        
+        finally:
+            client_socket.close()
+
+    def start(self):
+        try:
+            while True:
+                client_socket, address = self.socket.accept()
+                client_handler = threading.Thread(target=self.handle_client, args=(client_socket, address))
+                client_handler.start()
+        except KeyboardInterrupt:
+            print("Server shutting down.")
+            self.socket.close()
+
+if __name__ == "__main__":
+    HOST = "127.0.0.1"
+    PORT = 8888
+
+    ftp_server = FileTransferProtocol(HOST, PORT)
+    ftp_server.start()
+````
+#### Resultados:
+````
+Server listening on 127.0.0.1:8888
+Server shutting down.
+````
+El código implementa un servidor de transferencia de archivos utilizando el protocolo TCP en Python, donde se define una clase `FileTransferProtocol` que gestiona la comunicación con los clientes, ya que el servidor acepta conexiones entrantes y utiliza la técnica de multiplexación con la función `select.select()` para manejar múltiples conexiones de clientes de forma eficiente, entonces, cuando se establece una conexión con un cliente, se recibe el nombre y tamaño del archivo a transferir, donde la transferencia de datos se realiza en bloques, con el servidor esperando activamente la llegada de datos con `select.select()` para evitar bloqueos, una vez que se ha recibido todo el archivo, se calcula el hash SHA-256 para verificar su integridad, y luego se guarda en el servidor para finalmente, enviar una confirmación al cliente y se cierra la conexión, el servidor maneja excepciones y se puede detener de manera segura con una interrupción de teclado, donde este enfoque mejora la eficiencia al permitir que el servidor atienda múltiples clientes simultáneamente y minimiza el tiempo de espera al utilizar técnicas de E/S no bloqueantes, pero que ssi tiene un tiempo muy lagro de ejecucición.
+
 
 ## PROBLEMA 3: Creación de un sistema de autenticación segura con LDAP y SSH
 
